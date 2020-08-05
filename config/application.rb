@@ -8,6 +8,12 @@ Bundler.require(*Rails.groups)
 
 module TodoApi
   class Application < Rails::Application
+    config.generators do |g|
+      g.test_framework  :rspec, fixture: false
+      g.view_specs      false
+      g.helper_specs    false
+    end
+    config.api_only = true
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.0
 
