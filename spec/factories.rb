@@ -1,6 +1,10 @@
 # frozen_string_literal: true
 
 FactoryBot.define do
+  factory :project do
+    title { "MyText" }
+  end
+
   factory :user do
     name { 'Ivan' }
     password { 'ABcd1234' }

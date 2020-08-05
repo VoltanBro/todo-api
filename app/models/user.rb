@@ -5,6 +5,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+  has_many :projects
   validates :name, presence: true, uniqueness: true, length: { in: 3..50 }
   validates :password, confirmation: true, format: { with: /\A[a-zA-Z0-9]+\Z/ }
 
