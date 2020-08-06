@@ -16,6 +16,7 @@ module TodoApi
       g.helper_specs    false
     end
     config.api_only = true
+    config.middleware.use ActionDispatch::Flash
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.0
 
