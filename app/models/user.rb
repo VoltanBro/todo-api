@@ -6,6 +6,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   has_many :projects
+  has_many :tasks
   validates :name, presence: true, uniqueness: true, length: { in: 3..50 }
   validates :password, confirmation: true, format: { with: /\A[a-zA-Z0-9]+\Z/ }
 

@@ -7,6 +7,7 @@ ruby '2.7.0'
 
 gem 'devise'
 gem 'jbuilder', '~> 2.7'
+gem 'jwt_sessions'
 gem 'pg', '>= 0.18', '< 2.0'
 gem 'puma', '~> 4.1'
 gem 'rails', '~> 6.0.3', '>= 6.0.3.2'
