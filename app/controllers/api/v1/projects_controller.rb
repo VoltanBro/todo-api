@@ -5,8 +5,8 @@ module Api
 
       def create
         @project = User.find(params[:user_id]).projects.create(project_params)
-        if @project
-          render json: @project.name, status: :created
+        if @project.valid?
+          render json: @project.name, status: 201
         else
           render json: 'The project with such name does already exist.'
         end
@@ -23,7 +23,7 @@ module Api
         @user = User.find(params[:user_id])
         @project = @user.projects.find(params[:id])
         @project.destroy!
-        render json: 'project was deleted'
+        render json: 'project was deleted', status: 204
       end
 
       private
