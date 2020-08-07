@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Project, type: :model do
-  let!(:user) { create(:user, name: 'Manager') }
+  let!(:user) { create(:user) }
   let!(:project) { create(:project, name: 'TestProject', user_id: user.id) }
   let!(:project_invalid) { build(:project, name: 'TestProject', user_id: user.id) }
 

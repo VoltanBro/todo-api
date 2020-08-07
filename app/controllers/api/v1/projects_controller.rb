@@ -1,15 +1,23 @@
 module Api
   module V1
     class ProjectsController < ApplicationController
+      before_action :authorize_access_request!
+
       def new; end
 
       def create
-        @project = User.find(params[:user_id]).projects.create(project_params)
+        @project = current_user.projects.create(project_params)
         if @project.valid?
           render json: @project.name, status: 201
         else
           render json: 'The project with such name does already exist.'
         end
+      end
+
+      def show
+        @project = current_user.projects.find(params[:id])
+
+        render json: @project.as_json(only: :name), status: 200
       end
 
       def update
