@@ -8,17 +8,17 @@ module Api
         user = User.find_by!(name: params[:name])
         if user.authenticate(params[:password])
           payload = {user_id: user.id}
-          session = JWTSessions::Session.new(payload: payload)
+          session = JWTSessions::Session.new(payload: payload, refresh_by_access_allowed: true)
           render json: session.login
         else
-          render json: { message: 'Invalid user' }, status: :unauthorized
+          render json: { message: 'Incorrect login or(and) password' }, status: :unauthorized
         end
       end
 
       def destroy
         session = JWTSessions::Session.new(payload: payload)
         session.flush_by_access_payload
-        render json: :ok
+        render json: { message: "User is logout" }, status: 200
       end
 
       def destroy_by_refresh

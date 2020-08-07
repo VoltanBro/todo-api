@@ -3,6 +3,7 @@
 Rails.application.routes.draw do
   namespace :api, defaults: {format: :json} do
     namespace :v1 do
+      post :registration, to: 'registration#create'
       post :login, to: 'login#create'
       delete :login, to: 'login#destroy'
       delete 'login/destroy_by_refresh', to: 'login#destroy_by_refresh', as: :destroy_by_refresh

@@ -7,7 +7,6 @@ RSpec.describe "Projects", type: :request do
 
 
   it 'Create new project' do
-    byebug
     post "/api/v1/projects", params: { name: user.name, password: password }
     request.headers[JWTSessions.access_header] = @tokens[:access]
     expect(response).to be_successful
