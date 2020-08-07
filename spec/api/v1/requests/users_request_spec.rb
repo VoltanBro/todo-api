@@ -11,7 +11,7 @@ RSpec.describe "User session", type: :request do
     expect(response.body).to include('access', 'access_expires_at', 'csrf', 'refresh', 'refresh_expires_at')
   end
 
-  it "Unsuccessful logged" do
+  it "Unsuccessful login" do
     post "/api/v1/login", params: { name: user.name, password: '123123' }
     expect(response).to have_http_status(:unauthorized)
   end
