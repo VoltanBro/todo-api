@@ -14,11 +14,6 @@ module Api
         end
       end
 
-      def show
-        user = User.find(params[:id])
-        render json: {current_user: current_user.to_json, user: user.to_json}
-      end
-
       private
 
       def user_params

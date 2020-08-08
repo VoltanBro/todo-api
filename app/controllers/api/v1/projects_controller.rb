@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Api
   module V1
     class ProjectsController < ApplicationController
@@ -11,9 +13,9 @@ module Api
           project.save
           render json: { message: project.name }, status: 201
         else
-          render json: {"error": "The project with such name does already exist."}, status: 403
+          render json: { "error": 'The project with such name does already exist.' }, status: 403
         end
-      end
+     end
 
       def show
         project = current_user.projects.find(params[:id])
@@ -23,8 +25,11 @@ module Api
 
       def update
         project = current_user.projects.find(params[:id])
-        project.update(project_params)
-        render json: { message: project.name }, status: 200
+        if project.update(project_params).valid?
+          render json: { message: project.name }, status: 200
+        else
+          render json: { message: 'bad name' }, status: 403
+        end
       end
 
       ### Need fix it -> If project was already deleted, show status 404
