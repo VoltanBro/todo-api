@@ -1,6 +1,10 @@
 # frozen_string_literal: true
 
 FactoryBot.define do
+  factory :comment do
+    content { "MyText" }
+  end
+
   factory :user do
     name { 'Ivan' }
     password { '12345678' }
