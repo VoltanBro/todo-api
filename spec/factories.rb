@@ -2,7 +2,7 @@
 
 FactoryBot.define do
   factory :comment do
-    content { "MyText" }
+    content { "MyFirstComment" }
   end
 
   factory :user do
@@ -13,8 +13,8 @@ FactoryBot.define do
 
   factory :task do
     name { 'TestTask' }
+    complited { false }
   end
-
 
   factory :project do
     name { 'MyProject' }

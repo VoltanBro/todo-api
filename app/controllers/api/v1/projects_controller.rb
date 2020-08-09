@@ -11,7 +11,7 @@ module Api
         project = current_user.projects.new(project_params)
         if project.valid?
           project.save
-          render json: { message: project.name }, status: 201
+          render json: { project: { name: project.name }}, status: 201
         else
           render json: { "error": 'The project with such name does already exist.' }, status: 403
         end
@@ -20,13 +20,13 @@ module Api
       def show
         project = current_user.projects.find(params[:id])
 
-        render json: { message: project.name }, status: 200
+        render json: { message: project }, status: 200
       end
 
       def update
         project = current_user.projects.find(params[:id])
         if project.update(project_params).valid?
-          render json: { message: project.name }, status: 200
+          render json: { message: project }, status: 200
         else
           render json: { message: 'bad name' }, status: 403
         end
@@ -39,7 +39,7 @@ module Api
           render json: { error: 'project was already deleted' }, status: 404
         else
           project.destroy
-          render json: { message: 'project is deleted' }, status: 200
+          render json: { message: 'project was deleted' }, status: 200
         end
       end
 

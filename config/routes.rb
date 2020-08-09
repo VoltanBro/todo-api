@@ -11,9 +11,9 @@ Rails.application.routes.draw do
       post :refresh, to: 'refresh#create'
       post :refresh_by_access, to: 'refresh_by_access#create'
       resources :users, only: [:show, :create]
-      resources :projects do
-        resources :tasks
-      end
+      resources :projects
+      resources :tasks
+      resources :comments
     end
   end
 end

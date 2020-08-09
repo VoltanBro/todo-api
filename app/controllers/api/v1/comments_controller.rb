@@ -1,15 +1,19 @@
+# frozen_string_literal: true
+
 module Api
   module V1
-    class TasksController < ApplicationController
+    class CommentsController < ApplicationController
       before_action :authorize_access_request!
 
       def new; end
 
-      ### need fast fix -> Tasks don't create from json request
       def create
-        task = current_user.tasks.create(tasks_params)
+        comment = current_user.comments.new(comments_params)
+        if comment.valid?
+          comment.save
 
-        render json: { task: { name: task.name } }, status: 201
+          render json: { message: comment.content }, status: 201
+        end
       end
 
       def show
@@ -21,19 +25,19 @@ module Api
       def update
         task = current_user.tasks.find(params[:id])
         task.update(tasks_params)
-        render json: {message: 'Task was updated'}, status: 200
+        render json: { message: 'Task was updated' }, status: 200
       end
 
       def destroy
         task = current_user.projects.find(params[:id])
         task.destroy!
-        render json: {message: 'Task was deleted'}, status: 204
+        render json: { message: 'Task was deleted' }, status: 204
       end
 
-      private
+        private
 
-      def tasks_params
-        params.require(:task).permit(:name, :project_id)
+      def comments_params
+        params.require(:comment).permit(:content)
       end
     end
   end
