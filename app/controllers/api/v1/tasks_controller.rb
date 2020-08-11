@@ -17,40 +17,58 @@ module Api
       end
 
       def show
-        task = current_user.tasks.find(params[:id])
-        render jsonapi: task, status: 200
+        task = current_user.tasks.find_by(id: params[:id])
+        if task.nil?
+          render json: { error: 'Task not found' }, status: 404
+        else
+          render jsonapi: task, status: 200
+        end
       end
 
       def show_tasks_by_project
-        project = current_user.projects.find(params[:id])
-        tasks = project.tasks.order('created_at')
-
-        render jsonapi: tasks, status: 200
+        project = current_user.projects.find_by(id: params[:id])
+        if task.nil?
+          render json: { error: 'Tasks not found' }, status: 404
+        else
+          tasks = project.tasks.order('created_at')
+          render jsonapi: tasks, status: 200
+        end
       end
 
       def task_complited
-        task = current_user.tasks.find(params[:id])
-        task = TaskServices.task_done(task)
-
-        render jsonapi: task, status: 200
+        task = current_user.tasks.find_by(id: params[:id])
+        if task.nil?
+          render json: { error: 'Task not found' }, status: 404
+        else
+          task = TaskServices.task_done(task)
+          render jsonapi: task, status: 200
+        end
       end
 
       def update
-        task = current_user.tasks.find(params[:id])
+        task = current_user.tasks.find_by(id: params[:id])
+        if task.nil?
+          render json: { error: 'Task not found' }, status: 404
+        else
         task.update(tasks_params)
-        render json: { message: 'Task was updated' }, status: 200
+        render jsonapi: task, status: 200
+        end
       end
 
       def destroy
-        task = current_user.projects.find(params[:id])
-        task.destroy!
+        task = current_user.projects.find_by(id: params[:id])
+        if task.nil?
+          render json: { error: 'Task not found' }, status: 404
+        else
+        task.destroy
         render json: { message: 'Task was deleted' }, status: 204
+        end
       end
 
       private
 
       def tasks_params
-        params.require(:task).permit(:name, :complited, :deadline, :project_id,
+        params.require(:task).permit(:name, :complited, :project_id,
                                      :user_id)
       end
     end
