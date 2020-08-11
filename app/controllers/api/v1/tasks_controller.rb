@@ -21,7 +21,7 @@ module Api
         project = current_user.projects.find(params[:id])
         tasks = project.tasks.order("created_at")
 
-        render json: tasks
+        render jsonapi: tasks, status: 200
       end
 
       def task_complited

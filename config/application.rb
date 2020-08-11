@@ -15,7 +15,7 @@ module TodoApi
       g.view_specs      false
       g.helper_specs    false
     end
-    config.autoload_paths += ["#{config.root}/app/serializers"]
+    #config.autoload_paths += ["#{config.root}/app/serializers"]
     config.api_only = true
     config.middleware.use ActionDispatch::Flash
     # Initialize configuration defaults for originally generated Rails version.

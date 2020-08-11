@@ -21,7 +21,6 @@ module Api
         render json: { message: task.name }, status: 200
       end
 
-      ###  fix -> Need to handle unavailable name
       def update
         task = current_user.tasks.find(params[:id])
         task.update(tasks_params)
