@@ -7,6 +7,7 @@ module Api
 
       def new; end
 
+      # TODO need add validation for 'deadline'
       def create
         project = current_user.projects.new(project_params)
         if project.valid?
@@ -19,28 +20,27 @@ module Api
 
       def update
         project = current_user.projects.find(params[:id])
-        if project.update(project_params).valid?
-          render json: { message: project }, status: 200
+        if project.update(project_params)
+          render jsonapi: project, status: 200
         else
-          render json: { message: 'bad name' }, status: 403
+          render jsonapi_errors: project.errors, status: 403
         end
       end
 
-      ### Need fix it -> If project was already deleted, show status 404
       def destroy
-        project = current_user.projects.find(params[:id])
+        project = current_user.projects.find_by(id: params[:id])
         if project.nil?
-          render json: { error: 'project was already deleted' }, status: 404
+          render json: { error: 'Project not found' }, status: 404
         else
           project.destroy
-          render json: { message: 'project was deleted' }, status: 200
+          render jsonapi: project, status: 200
         end
       end
 
       private
 
       def project_params
-        params.require(:project).permit(:name)
+        params.require(:project).permit(:name, :deadline, :user_id)
       end
     end
   end

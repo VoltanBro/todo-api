@@ -14,7 +14,7 @@ Rails.application.routes.draw do
       resources :users, only: %i[show create]
       resources :projects
       resources :tasks
-      resources :comments
+      resources :comments, only: %i[create destroy]
     end
   end
 end
