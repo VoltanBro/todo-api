@@ -11,7 +11,7 @@ module Api
           session = JWTSessions::Session.new(payload: payload, refresh_by_access_allowed: true)
           render json: session.login
         else
-          render json: { message: 'Incorrect login or(and) password' }, status: :unauthorized
+          render json: { message: '“This login is already registered. Please, log in.' }, status: :unauthorized
         end
       end
 

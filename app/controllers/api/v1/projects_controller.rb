@@ -17,12 +17,6 @@ module Api
         end
      end
 
-      def show
-        project = current_user.projects.find(params[:id])
-
-        render json: { message: project }, status: 200
-      end
-
       def update
         project = current_user.projects.find(params[:id])
         if project.update(project_params).valid?

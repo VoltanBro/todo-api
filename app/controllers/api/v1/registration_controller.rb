@@ -8,7 +8,7 @@ module Api
           user.save
           render json: {message: 'You’re successfully registered!'}, status: 201
         else
-          render json: {error: "#{user.name} isn't available "}, status: 403
+          render json: {error: user.errors}, status: 403
         end
       end
 
