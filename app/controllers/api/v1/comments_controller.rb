@@ -33,7 +33,7 @@ module Api
         render json: { message: 'Task was deleted' }, status: 204
       end
 
-        private
+      private
 
       def comments_params
         params.require(:comment).permit(:content)

@@ -11,11 +11,11 @@ module Api
         project = current_user.projects.new(project_params)
         if project.valid?
           project.save
-          render json: { project: { name: project.name }}, status: 201
+          render jsonapi: project, status: 201
         else
-          render json: { "error": 'The project with such name does already exist.' }, status: 403
+          render jsonapi_errors: project, status: 422
         end
-     end
+      end
 
       def update
         project = current_user.projects.find(params[:id])

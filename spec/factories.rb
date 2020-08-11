@@ -2,7 +2,7 @@
 
 FactoryBot.define do
   factory :comment do
-    content { "MyFirstComment" }
+    content { 'MyFirstComment' }
   end
 
   factory :user do

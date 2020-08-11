@@ -17,7 +17,7 @@ RSpec.describe 'Projects', type: :request do
     post '/api/v1/projects', params: project_params, headers: headers
     parsed_body = JSON.parse(response.body)
     expect(response).to be_successful
-		expect(response).to have_http_status(:created)
-    expect(parsed_body['project']['name']).to eq('testProject')
+    expect(response).to have_http_status(:created)
+    expect(parsed_body['data']['attributes']['name']).to eq('testProject')
   end
 end

@@ -10,4 +10,3 @@ class Ability
     can :crud, Comment, user_id: user.id
   end
 end
-# can :create, Task, project_id: user.projects.pluck(:id)

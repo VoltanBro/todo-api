@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Api
   module V1
     class LoginController < ApplicationController
@@ -7,7 +9,7 @@ module Api
       def create
         user = User.find_by!(name: params[:name])
         if user.authenticate(params[:password])
-          payload = {user_id: user.id}
+          payload = { user_id: user.id }
           session = JWTSessions::Session.new(payload: payload, refresh_by_access_allowed: true)
           render json: session.login
         else
@@ -18,7 +20,7 @@ module Api
       def destroy
         session = JWTSessions::Session.new(payload: payload)
         session.flush_by_access_payload
-        render json: { message: "User is logout" }, status: 200
+        render json: { message: 'User is logout' }, status: 200
       end
 
       def destroy_by_refresh

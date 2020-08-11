@@ -15,6 +15,6 @@ RSpec.describe User, type: :model do
   end
   it 'is invalid with a duplicate user name' do
     duplicate_user.valid?
-    expect(duplicate_user.errors[:name]).to include('has already been taken')
+    expect(duplicate_user.errors[:name]).to include('This login is already registered. Please, log in.')
   end
 end

@@ -8,9 +8,9 @@ module Api
       def create
         user = User.new(user_params)
         if user.save
-          render json: {current_user: current_user.to_json, user: user.to_json}
+          render json: { current_user: current_user.to_json, user: user.to_json }
         else
-          render json: {errors: user.errors.full_messages}
+          render json: { errors: user.errors.full_messages }
         end
       end
 

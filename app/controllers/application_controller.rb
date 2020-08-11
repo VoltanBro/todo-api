@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class ApplicationController < ActionController::API
-  #respond_to :json
+  # respond_to :json
   include JWTSessions::RailsAuthorization
   rescue_from JWTSessions::Errors::Unauthorized, with: :not_authorized
 
@@ -17,7 +17,7 @@ class ApplicationController < ActionController::API
 
   def process_action(*args)
     super
-  rescue ActionDispatch::Http::Parameters::ParseError => exception
-    render status: 400, json: { errors: [ exception.message ] }
+  rescue ActionDispatch::Http::Parameters::ParseError => e
+    render status: 400, json: { errors: [e.message] }
   end
 end
