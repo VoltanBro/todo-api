@@ -16,11 +16,11 @@ paths:
       - Users
       parameters: []
       responses:
-        '201':
-          description: OK
-          content: {}
         '401':
           description: Unauthorized
+          content: {}
+        '201':
+          description: OK
           content: {}
       requestBody:
         content:
@@ -41,6 +41,48 @@ paths:
       parameters: []
       responses:
         '201':
+          description: OK
+          content: {}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                project:
+                  properties:
+                    name:
+                      type: string
+  "/api/v1/projects/{id}":
+    get:
+      summary: Show project by id
+      tags:
+      - Projects
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content: {}
+    patch:
+      summary: Update project by id
+      tags:
+      - Projects
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
           description: OK
           content: {}
       requestBody:

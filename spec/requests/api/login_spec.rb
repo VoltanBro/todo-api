@@ -20,11 +20,14 @@ RSpec.describe 'api/login', type: :request do
       }
 
       response(201, 'OK') do
-        run_test!
-      end
-      response(401, 'Unauthorized') do
-        let(:params) { { name: user.name, password: 'wrongPassword' } }
-        run_test!
+        run_test! do |response|
+          json = JSON.parse(response.body)
+          expect(json).to include('access', 'csrf')
+        end
+        response(401, 'Unauthorized') do
+          let(:params) { { name: user.name, password: 'wrongPassword' } }
+          run_test!
+        end
       end
     end
   end
