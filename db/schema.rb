@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(version: 2020_08_08_125551) do
 
   create_table "projects", force: :cascade do |t|
     t.text "name"
+    t.date "deadline"
     t.bigint "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -37,7 +38,7 @@ ActiveRecord::Schema.define(version: 2020_08_08_125551) do
 
   create_table "tasks", force: :cascade do |t|
     t.text "name"
-    t.boolean "complited"
+    t.boolean "complited", default: false
     t.bigint "project_id"
     t.bigint "user_id"
     t.datetime "created_at", precision: 6, null: false

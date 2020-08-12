@@ -3,18 +3,18 @@
 require 'swagger_helper'
 
 RSpec.describe 'api/projects', type: :request do
-  let!(:password)        { '12345678' }
-  let!(:user)            { create(:user) }
+  let(:password)        { '12345678' }
+  let(:user)            { create(:user) }
   let!(:project)         { create(:project, user_id: user.id) }
   let(:project_params)   { { project: { name: 'testProject', user_id: user.id } } }
-  let!(:name)            { 'testProject' }
-  let!(:access_token)    { "Bearer #{tokens[:access]}" }
-  let!(:payload)         { { user_id: user.id } }
-  let!(:session)         { JWTSessions::Session.new(payload: payload) }
-  let!(:tokens)          { session.login }
+  let(:name)            { 'testProject' }
+  let(:access_token)    { "Bearer #{tokens[:access]}" }
+  let(:payload)         { { user_id: user.id } }
+  let(:session)         { JWTSessions::Session.new(payload: payload) }
+  let(:tokens)          { session.login }
   let(:id)               { project.id }
-  let!(:params)          { { project: { name: name } } }
-  let!(:Authorization)   { "Bearer #{tokens[:access]}" }
+  let(:params)          { { project: { name: name } } }
+  let(:Authorization)   { "Bearer #{tokens[:access]}" }
 
   path '/api/v1/projects' do
     post 'Create project' do

@@ -125,6 +125,49 @@ paths:
           application/json:
             schema:
               type: string
+  "/api/v1/tasks":
+    post:
+      summary: Create task
+      tags:
+      - Tasks
+      security:
+      - bearerAuth: []
+      parameters: []
+      responses:
+        '201':
+          description: OK
+          content: {}
+        '422':
+          description: Invalid name
+          content: {}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                task:
+                  properties:
+                    name:
+                      type: string
+                    project_id:
+                      type: string
+  "/api/v1/tasks/{id}":
+    get:
+      summary: Show tasks by id
+      tags:
+      - Tasks
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content: {}
 servers:
 - url: http://{defaultHost}
   variables:
