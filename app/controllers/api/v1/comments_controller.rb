@@ -22,6 +22,7 @@ module Api
       def show
         task = current_user.tasks.find_by(id: params[:id])
         if task.nil?
+
           render json: { error: 'Task not found' }, status: 404
         else
 
@@ -32,6 +33,7 @@ module Api
       def destroy
         task = current_user.projects.find_by(id: params[:id])
         if task.nil?
+
           render json: { error: 'Task not found' }, status: 404
         else
           task.destroy!
