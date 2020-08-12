@@ -8,16 +8,16 @@ module Api
       def create
         user = User.new(user_params)
         if user.save
-          render json: { current_user: current_user.to_json, user: user.to_json }
+          render jsonapi: user, status: 201
         else
-          render json: { errors: user.errors.full_messages }
+          render jsonapi_errors: user.errors, status: 422
         end
       end
 
       private
 
       def user_params
-        params.require(:user).permit(:name, :password)
+        params.permit(:name, :password, :password_confirmation)
       end
     end
   end

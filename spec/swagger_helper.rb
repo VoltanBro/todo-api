@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 require 'rails_helper'
+require 'simplecov'
+SimpleCov.start
 
 RSpec.configure do |config|
   # Specify a root folder where Swagger JSON files are generated

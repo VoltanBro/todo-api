@@ -20,7 +20,7 @@ RSpec.describe 'api/projects', type: :request do
       security [{ bearerAuth: [] }]
       consumes 'application/json'
       produces 'application/json'
-      parameter name: :Authorization, in: :header, type: :string
+     # parameter name: :Authorization, in: :header, type: :string
       parameter name: :params, in: :body, type: :string, schema: {
         properties: {
           project: {

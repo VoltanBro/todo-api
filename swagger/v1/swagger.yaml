@@ -19,15 +19,18 @@ paths:
         '201':
           description: OK
           content: {}
+        '401':
+          description: Unauthorized
+          content: {}
       requestBody:
         content:
           application/json:
             schema:
               properties:
-                project:
-                  properties:
-                    name:
-                      type: string
+                name:
+                  type: string
+                password:
+                  type: string
   "/api/v1/projects":
     post:
       summary: Create project
@@ -35,11 +38,7 @@ paths:
       - Projects
       security:
       - bearerAuth: []
-      parameters:
-      - name: Authorization
-        in: header
-        schema:
-          type: string
+      parameters: []
       responses:
         '201':
           description: OK

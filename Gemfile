@@ -21,6 +21,7 @@ gem 'webpacker', '~> 4.0'
 gem 'bootsnap', '>= 1.4.2', require: false
 
 group :development, :test do
+  gem 'simplecov', require: false
   gem 'byebug'
   gem 'database_cleaner-active_record'
   gem 'factory_bot'
