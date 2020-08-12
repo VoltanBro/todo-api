@@ -27,7 +27,7 @@ module Api
 
       def show_tasks_by_project
         project = current_user.projects.find_by(id: params[:id])
-        if task.nil?
+        if project.nil?
           render json: { error: 'Tasks not found' }, status: 404
         else
           tasks = project.tasks.order('created_at')
@@ -50,8 +50,8 @@ module Api
         if task.nil?
           render json: { error: 'Task not found' }, status: 404
         else
-        task.update(tasks_params)
-        render jsonapi: task, status: 200
+          task.update(tasks_params)
+          render jsonapi: task, status: 200
         end
       end
 
@@ -60,8 +60,8 @@ module Api
         if task.nil?
           render json: { error: 'Task not found' }, status: 404
         else
-        task.destroy
-        render json: { message: 'Task was deleted' }, status: 204
+          task.destroy
+          render json: { message: 'Task was deleted' }, status: 204
         end
       end
 

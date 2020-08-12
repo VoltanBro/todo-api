@@ -12,31 +12,38 @@ module Api
         if comment.valid?
           comment.save
 
-          render json: { message: comment.content }, status: 201
+          render jsonapi: comment, status: 201
+        else
+
+          render jsonapi_errors: comment.errors, status: 204
         end
       end
 
       def show
-        task = current_user.tasks.find(params[:id])
-        render json: { message: task.name }, status: 200
-      end
+        task = current_user.tasks.find_by(id: params[:id])
+        if task.nil?
+          render json: { error: 'Task not found' }, status: 404
+        else
 
-      def update
-        task = current_user.tasks.find(params[:id])
-        task.update(tasks_params)
-        render json: { message: 'Task was updated' }, status: 200
+          render json: { message: task.name }, status: 200
+        end
       end
 
       def destroy
-        task = current_user.projects.find(params[:id])
-        task.destroy!
-        render json: { message: 'Task was deleted' }, status: 204
+        task = current_user.projects.find_by(id: params[:id])
+        if task.nil?
+          render json: { error: 'Task not found' }, status: 404
+        else
+          task.destroy!
+
+          render json: { message: 'Task was deleted' }, status: 204
+        end
       end
 
       private
 
       def comments_params
-        params.require(:comment).permit(:content)
+        params.require(:comment).permit(:content, :project_id, :task_id)
       end
     end
   end
