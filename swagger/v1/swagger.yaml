@@ -3,7 +3,56 @@ openapi: 3.0.1
 info:
   title: API V1
   version: v1
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
 paths:
+  "/api/v1/login":
+    post:
+      summary: Login user
+      tags:
+      - Users
+      parameters: []
+      responses:
+        '201':
+          description: OK
+          content: {}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                project:
+                  properties:
+                    name:
+                      type: string
+  "/api/v1/projects":
+    post:
+      summary: Create project
+      tags:
+      - Projects
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: Authorization
+        in: header
+        schema:
+          type: string
+      responses:
+        '201':
+          description: OK
+          content: {}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                project:
+                  properties:
+                    name:
+                      type: string
   "/api/v1/registration":
     post:
       summary: Create user
@@ -14,24 +63,11 @@ paths:
         '201':
           description: OK
           content: {}
-        '403':
-          description: Invalid params
-          content: {}
       requestBody:
         content:
           application/json:
             schema:
-              properties:
-                name:
-                  type: string
-                password:
-                  type: string
-                password_confirmation:
-                  type: string
-              required:
-              - name
-              - password
-              - password_confirmation
+              type: string
 servers:
 - url: http://{defaultHost}
   variables:
