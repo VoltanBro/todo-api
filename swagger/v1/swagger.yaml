@@ -94,6 +94,22 @@ paths:
                   properties:
                     name:
                       type: string
+    delete:
+      summary: Delete project by id
+      tags:
+      - Projects
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content: {}
   "/api/v1/registration":
     post:
       summary: Create user
@@ -113,4 +129,4 @@ servers:
 - url: http://{defaultHost}
   variables:
     defaultHost:
-      default: localhost:3000
+      default: 127.0.0.1:3000

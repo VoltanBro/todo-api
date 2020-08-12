@@ -28,11 +28,12 @@ module Api
       end
 
       def update
-        project = current_user.projects.find(params[:id])
-        if project.update(project_params)
-          render jsonapi: project, status: 200
+        project = current_user.projects.find_by(id: params[:id])
+        if project.nil?
+          render json: { error: 'Project not found' }, status: 404
         else
-          render jsonapi_errors: project.errors, status: 403
+          project.update(project_params)
+          render jsonapi: project, status: 200
         end
       end
 
