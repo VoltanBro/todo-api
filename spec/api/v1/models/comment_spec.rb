@@ -19,4 +19,11 @@ RSpec.describe Comment, type: :model do
   it 'create comment with valid content' do
     expect(invalid_comment.valid?).to eq(false)
   end
+
+  describe 'Attachment' do
+    it 'is valid  ' do
+      subject.image.attach(io: File.open('public/uploads/attachment.jpg'), filename: 'attachment.jpg', content_type: 'image/jpg')
+      expect(subject.image).to be_attached
+    end
+  end
 end

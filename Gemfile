@@ -5,6 +5,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.7.0'
 
+gem 'active_storage_validations'
 gem 'bcrypt', '~> 3.1.7'
 gem 'cancancan'
 gem 'jbuilder', '~> 2.7'
