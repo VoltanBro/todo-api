@@ -15,30 +15,30 @@ module Api
           render jsonapi: comment, status: 201
         else
 
-          render jsonapi_errors: comment.errors, status: 204
+          render jsonapi_errors: comment.errors, status: 422
         end
       end
 
       def show
-        task = current_user.tasks.find_by(id: params[:id])
-        if task.nil?
+        comment = current_user.comments.find_by(id: params[:id])
+        if comment.nil?
 
           render json: { error: 'Task not found' }, status: 404
         else
 
-          render json: { message: task.name }, status: 200
+          render jsonapi: comment, status: 200
         end
       end
 
       def destroy
-        task = current_user.projects.find_by(id: params[:id])
-        if task.nil?
+        comment = current_user.comments.find_by(id: params[:id])
+        if comment.nil?
 
           render json: { error: 'Task not found' }, status: 404
         else
-          task.destroy!
+          comment.destroy!
 
-          render json: { message: 'Task was deleted' }, status: 204
+          render jsonapi: comment, status: 204
         end
       end
 

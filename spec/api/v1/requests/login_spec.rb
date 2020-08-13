@@ -12,7 +12,6 @@ RSpec.describe 'api/login', type: :request do
       consumes 'application/json'
       produces 'application/json'
       parameter name: :params, in: :body, type: :string, schema: {
-
         properties: {
           name: { type: :string },
           password: { type: :string }
