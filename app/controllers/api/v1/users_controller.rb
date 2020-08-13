@@ -2,7 +2,7 @@
 
 module Api
   module V1
-    class UsersController < ActionController
+    class UsersController < ApplicationController
       before_action :authorize_access_request!
 
       def create

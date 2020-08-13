@@ -30,10 +30,10 @@ RSpec.configure do |config|
       paths: {},
       servers: [
         {
-          url: "http://{defaultHost}",
+          url: "https://todo-api-json-test-project.herokuapp.com",
           variables: {
               defaultHost: {
-                  default: "127.0.0.1:3000"
+                  default: "https://todo-api-json-test-project.herokuapp.com"
             }
           }
         }

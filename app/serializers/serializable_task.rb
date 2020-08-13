@@ -2,7 +2,5 @@
 
 class SerializableTask < JSONAPI::Serializable::Resource
   type 'tasks'
-  attributes :name, :complited
-  # belongs_to :project
-  # belongs_to :user
+  attributes :name, :complited, :project_id, :user_id, :deadline, :created_at
 end

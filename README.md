@@ -1,24 +1,24 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+#### TODO APP - RAILS API JSON
+* As User you can: 
+  * Login / Register in app
+  * Create new project [CRUD]
+  * Create new task and set deadline [CRUD]
+  * Create comment with attached image
 
-Things you may want to cover:
 
-* Ruby version
+#### test user name: 'Luke', password: '12345678'
+## Swagger '[API-DOCS](127.0.0.1:3000/api-docs/index.html)'
 
-* System dependencies
+#### Feature:
+- used gem '[cancancan](https://github.com/CanCanCommunity/cancancan)'
+- used gem '[jwt_sessions](https://github.com/tuwukee/jwt_sessions)'
+- used gem '[factory_bot](https://github.com/varvet/pundit "pundit")'
+- used gem '[rswag](https://github.com/thoughtbot/factory_bot)'
 
-* Configuration
+> * Ruby 2.7.0 [x86_64-linux]
+> * Rails 6.0.3.1
+> * (PostgreSQL) 10.12 
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+ **supported Heroku Deploy**
