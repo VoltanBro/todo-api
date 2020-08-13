@@ -11,7 +11,7 @@ components:
 paths:
   "/api/v1/comments":
     post:
-      summary: Create comment
+      summary: Create comment of current user
       tags:
       - Comments
       security:
@@ -39,7 +39,7 @@ paths:
                       type: string
   "/api/v1/comments/{id}":
     get:
-      summary: Show comments by id
+      summary: Show comment of current user by id
       tags:
       - Comments
       security:
@@ -52,6 +52,25 @@ paths:
           type: string
       responses:
         '200':
+          description: OK
+          content: {}
+        '404':
+          description: Not found
+          content: {}
+    delete:
+      summary: Delete comment of current user by id
+      tags:
+      - Comments
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
           description: OK
           content: {}
         '404':
@@ -81,7 +100,7 @@ paths:
                   type: string
   "/api/v1/projects":
     post:
-      summary: Create project
+      summary: Create project of current user
       tags:
       - Projects
       security:
@@ -105,7 +124,7 @@ paths:
                       type: string
   "/api/v1/projects/{id}":
     get:
-      summary: Show project by id
+      summary: Show project of current user by id
       tags:
       - Projects
       security:
@@ -124,7 +143,7 @@ paths:
           description: Not found
           content: {}
     patch:
-      summary: Update project by id
+      summary: Update project of current user by id
       tags:
       - Projects
       security:
@@ -152,7 +171,7 @@ paths:
                     name:
                       type: string
     delete:
-      summary: Delete project by id
+      summary: Delete project of current user by id
       tags:
       - Projects
       security:
@@ -193,7 +212,7 @@ paths:
                   type: string
   "/api/v1/tasks":
     post:
-      summary: Create task
+      summary: Create task of current user
       tags:
       - Tasks
       security:
@@ -219,7 +238,7 @@ paths:
                       type: string
   "/api/v1/tasks/{id}":
     get:
-      summary: Show tasks by id
+      summary: Show task of current user by id
       tags:
       - Tasks
       security:
@@ -238,7 +257,7 @@ paths:
           description: Not found
           content: {}
     patch:
-      summary: Update tasks by id
+      summary: Update task of current user by id
       tags:
       - Tasks
       security:
@@ -266,7 +285,7 @@ paths:
                     name:
                       type: string
     delete:
-      summary: Delete tasks by id
+      summary: Delete task of current user by id
       tags:
       - Tasks
       security:
@@ -278,6 +297,9 @@ paths:
         schema:
           type: string
       responses:
+        '204':
+          description: OK
+          content: {}
         '404':
           description: Not found
           content: {}

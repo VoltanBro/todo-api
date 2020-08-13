@@ -25,13 +25,24 @@ module Api
         end
       end
 
-      def show_tasks_by_project
+      def index
         project = current_user.projects.find_by(id: params[:id])
         if project.nil?
           render json: { error: 'Tasks not found' }, status: 404
         else
           tasks = project.tasks.order('created_at')
           render jsonapi: tasks, status: 200
+        end
+      end
+
+
+      def comments_counter
+        task = current_user.projects.find_by(id: params[:id])
+        if task.nil?
+          render json: { error: 'Task not found' }, status: 404
+        else
+          comment_count = task.comments.count
+        render json: comment_count, status: 200
         end
       end
 
@@ -56,7 +67,7 @@ module Api
       end
 
       def destroy
-        task = current_user.projects.find_by(id: params[:id])
+        task = current_user.tasks.find_by(id: params[:id])
         if task.nil?
           render json: { error: 'Task not found' }, status: 404
         else
@@ -68,7 +79,7 @@ module Api
       private
 
       def tasks_params
-        params.require(:task).permit(:name, :complited, :project_id,
+        params.require(:task).permit(:name, :complited, :deadline, :project_id,
                                      :user_id)
       end
     end

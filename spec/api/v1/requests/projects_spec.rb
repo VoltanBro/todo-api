@@ -16,7 +16,7 @@ RSpec.describe 'api/projects', type: :request do
   let(:Authorization) { "Bearer #{tokens[:access]}" }
 
   path '/api/v1/projects' do
-    post 'Create project' do
+    post 'Create project of current user' do
       tags 'Projects'
       security [{bearerAuth: []}]
       consumes 'application/json'
@@ -41,7 +41,7 @@ RSpec.describe 'api/projects', type: :request do
     end
   end
   path '/api/v1/projects/{id}' do
-    get 'Show project by id' do
+    get 'Show project of current user by id' do
       tags 'Projects'
       security [{bearerAuth: []}]
       consumes 'application/json'
@@ -61,7 +61,7 @@ RSpec.describe 'api/projects', type: :request do
     end
   end
   path '/api/v1/projects/{id}' do
-    patch 'Update project by id' do
+    patch 'Update project of current user by id' do
       tags 'Projects'
       security [{bearerAuth: []}]
       consumes 'application/json'
@@ -90,7 +90,7 @@ RSpec.describe 'api/projects', type: :request do
     end
   end
   path '/api/v1/projects/{id}' do
-    delete 'Delete project by id' do
+    delete 'Delete project of current user by id' do
       tags 'Projects'
       security [{bearerAuth: []}]
       consumes 'application/json'

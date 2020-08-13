@@ -12,7 +12,7 @@ RSpec.describe 'api/projects', type: :request do
   let(:Authorization) { "Bearer #{tokens[:access]}" }
 
   path '/api/v1/comments' do
-    post 'Create comment' do
+    post 'Create comment of current user' do
       tags 'Comments'
       security [{bearerAuth: []}]
       consumes 'application/json'
@@ -41,7 +41,7 @@ RSpec.describe 'api/projects', type: :request do
     end
   end
   path '/api/v1/comments/{id}' do
-    get 'Show comments by id' do
+    get 'Show comment of current user by id' do
       tags 'Comments'
       security [{bearerAuth: []}]
       consumes 'application/json'
@@ -62,7 +62,7 @@ RSpec.describe 'api/projects', type: :request do
     end
   end
   path '/api/v1/comments/{id}' do
-    delete 'Delete comment by id' do
+    delete 'Delete comment of current user by id' do
       tags 'Comments'
       security [{ bearerAuth: [] }]
       consumes 'application/json'

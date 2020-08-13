@@ -13,10 +13,11 @@ Rails.application.routes.draw do
       post :refresh_by_access, to: 'refresh_by_access#create'
       get 'projects/:id/current_tasks', to: 'tasks#show_tasks_by_project'
       patch 'tasks/:id/task_complited', to: 'tasks#task_complited'
+      get 'tasks/:id/comments_counter',  to: 'tasks#comments_counter'
       resources :users, only: %i[show create]
       resources :projects
       resources :tasks
-      resources :comments, only: %i[create show destroy]
+      resources :comments, except: :update
     end
   end
 end

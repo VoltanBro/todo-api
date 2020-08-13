@@ -50,7 +50,7 @@ module Api
       private
 
       def project_params
-        params.require(:project).permit(:name, :deadline, :user_id)
+        params.require(:project).permit(:name, :user_id)
       end
     end
   end
