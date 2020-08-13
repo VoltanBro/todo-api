@@ -21,7 +21,7 @@ module Api
       def show
         project = current_user.projects.find_by(id: params[:id])
         if project.nil?
-          render jsonapi_errors: project, status: 404
+          render json: { error: 'Project not found' }, status: 404
         else
           render jsonapi: project, status: 200
         end

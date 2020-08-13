@@ -45,7 +45,7 @@ module Api
       private
 
       def comments_params
-        params.require(:comment).permit(:content, :project_id, :task_id)
+        params.require(:comment).permit(:content, :project_id, :task_id, :user_id)
       end
     end
   end
