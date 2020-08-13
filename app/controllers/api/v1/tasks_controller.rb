@@ -35,14 +35,13 @@ module Api
         end
       end
 
-
       def comments_counter
-        task = current_user.projects.find_by(id: params[:id])
-        if task.nil?
-          render json: { error: 'Task not found' }, status: 404
+        project = current_user.projects.find_by(id: params[:id])
+        if project.nil?
+          render json: { error: 'Project not found' }, status: 404
         else
-          comment_count = task.comments.count
-        render json: comment_count, status: 200
+          comment_count = project.comments.count
+          render json: comment_count, status: 200
         end
       end
 
