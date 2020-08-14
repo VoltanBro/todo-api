@@ -14,7 +14,8 @@ gem 'jwt_sessions'
 gem 'pg', '>= 0.18', '< 2.0'
 gem 'puma', '~> 4.1'
 gem 'rails', '~> 6.0.3', '>= 6.0.3.2'
-gem 'rswag'
+gem 'rswag-api'
+gem 'rswag-ui'
 gem 'sass-rails', '>= 6'
 gem 'turbolinks', '~> 5'
 gem 'webpacker', '~> 4.0'
@@ -22,14 +23,15 @@ gem 'webpacker', '~> 4.0'
 gem 'bootsnap', '>= 1.4.2', require: false
 
 group :development, :test do
-  gem 'simplecov', require: false
   gem 'byebug'
   gem 'database_cleaner-active_record'
   gem 'factory_bot'
   gem 'factory_bot_rails'
   gem 'rspec-rails', '~> 4.0.1'
+  gem 'rswag-specs'
   gem 'rubocop', require: false
   gem 'rubocop-rails', require: false
+  gem 'simplecov', require: false
 end
 
 group :development do

@@ -285,7 +285,7 @@ paths:
                     name:
                       type: string
     delete:
-      summary: Delete task of current user by id
+      summary: Delete tasks of current user by id
       tags:
       - Tasks
       security:
@@ -304,7 +304,7 @@ paths:
           description: Not found
           content: {}
 servers:
-- url: http://{defaultHost}
+- url: https://todo-api-json-test-project.herokuapp.com
   variables:
     defaultHost:
-      default: 127.0.0.1:3000
+      default: https://todo-api-json-test-project.herokuapp.com
