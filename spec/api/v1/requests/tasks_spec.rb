@@ -6,13 +6,13 @@ RSpec.describe 'api/tasks', type: :request do
   let(:user)            { create(:user) }
   let(:project)         { create(:project, user_id: user.id) }
   let!(:task)           { create(:task, user_id: user.id, project_id: project.id) }
-  let(:id)              { task.id }
   let(:access_token)    { "Bearer #{tokens[:access]}" }
   let(:payload)         { { user_id: user.id } }
   let(:session)         { JWTSessions::Session.new(payload: payload) }
   let(:tokens)          { session.login }
   let(:params)          { { task: { name: 'test', project_id: project.id } } }
   let(:Authorization)   { "Bearer #{tokens[:access]}" }
+  let(:deadline)        { { task: { project_id: project.id, deadline: Time.now + 1.hour } } }
 
   path '/api/v1/tasks' do
     post 'Create task of current user' do
@@ -52,6 +52,7 @@ RSpec.describe 'api/tasks', type: :request do
       parameter name: :id, in: :path, type: :string
 
       response(200, 'OK') do
+        let(:id) { task.id }
         run_test! do |response|
            json = JSON.parse(response.body)
            expect(json['data']['attributes']['name']).to include(task.name)
@@ -79,8 +80,9 @@ RSpec.describe 'api/tasks', type: :request do
         }
       }
       parameter name: :id, in: :path, type: :string
-      response(200, 'OK') do
+      response(201, 'OK') do
         let(:params) { { task: { name: 'new_name', project_id: project.id } } }
+        let(:id) { task.id }
          run_test!  do |response|
           json = JSON.parse(response.body)
           expect(json['data']['attributes']['name']).to eq('new_name')
@@ -100,10 +102,34 @@ RSpec.describe 'api/tasks', type: :request do
       produces 'application/json'
       parameter name: :id, in: :path, type: :string
       response(204, 'OK') do
+        let(:id) { task.id }
         run_test!
       end
       response(404, 'Not found') do
         let(:id) { '9999999' }
+        run_test!
+      end
+    end
+  end
+  path '/api/v1/tasks/{id}' do
+    patch 'Set deadline' do
+      tags 'Tasks'
+      security [{ bearerAuth: [] }]
+      consumes 'application/json'
+      produces 'application/json'
+      parameter name: :id, in: :path, type: :string
+      parameter name: :deadline, in: :body, type: :string, schema: {
+        properties: {
+          task: {
+            properties: {
+              deadline: { type: :string },
+              project_id: { type: :string }
+            }
+          }
+        }
+      }
+      response(201, 'OK') do
+        let(:id) { task.id }
         run_test!
       end
     end

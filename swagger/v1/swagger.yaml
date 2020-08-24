@@ -155,7 +155,7 @@ paths:
         schema:
           type: string
       responses:
-        '200':
+        '201':
           description: OK
           content: {}
         '404':
@@ -257,7 +257,7 @@ paths:
           description: Not found
           content: {}
     patch:
-      summary: Update task of current user by id
+      summary: Set deadline
       tags:
       - Tasks
       security:
@@ -269,7 +269,7 @@ paths:
         schema:
           type: string
       responses:
-        '200':
+        '201':
           description: OK
           content: {}
         '404':
@@ -280,9 +280,11 @@ paths:
           application/json:
             schema:
               properties:
-                project:
+                task:
                   properties:
-                    name:
+                    deadline:
+                      type: string
+                    project_id:
                       type: string
     delete:
       summary: Delete tasks of current user by id
@@ -308,3 +310,7 @@ servers:
   variables:
     defaultHost:
       default: https://todo-api-json-test-project.herokuapp.com
+- url: http://{defaultHost}
+  variables:
+    defaultHost:
+      default: 127.0.0.1:3000

@@ -33,7 +33,7 @@ module Api
           render json: { error: 'Project not found' }, status: 404
         else
           project.update(project_params)
-          render jsonapi: project, status: 200
+          render jsonapi: project, status: 201
         end
       end
 

@@ -61,7 +61,7 @@ module Api
           render json: { error: 'Task not found' }, status: 404
         else
           task.update(tasks_params)
-          render jsonapi: task, status: 200
+          render jsonapi: task, status: 201
         end
       end
 

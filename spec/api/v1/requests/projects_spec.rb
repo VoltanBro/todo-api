@@ -76,7 +76,7 @@ RSpec.describe 'api/projects', type: :request do
           }
       }
       parameter name: :id, in: :path, type: :string
-      response(200, 'OK') do
+      response(201, 'OK') do
         let(:project_params) { {project: {name: 'new_name', user_id: user.id}} }
         run_test! do |response|
           json = JSON.parse(response.body)
